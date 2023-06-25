@@ -264,7 +264,7 @@ $dataFeedback = query("SELECT * FROM contact_us");
 
     // Kirim permintaan AJAX ke server untuk menghapus feedback
     $.ajax({
-      url: 'hapus_feedback.php',
+      url: 'ajax/hapus_feedback.php',
       type: 'POST',
       data: { id: feedbackId },
       success: function(response) {
