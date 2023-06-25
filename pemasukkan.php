@@ -247,7 +247,7 @@
 													<th>Jumlah Pemasukkan</th>
 													<th>Aksi</th>
 											</tr>
-											<?php $i = 1; ?>
+											<?php $i  = 1; ?>
 											<?php foreach ($pemasukkan as $row) : ?>
 											<tr class="show" id="<?= $row['id'] ?>">
 													<td> <?= $i ?> </td>

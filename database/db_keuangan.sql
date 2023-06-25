@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2022 at 10:56 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.3.33
+-- Waktu pembuatan: 22 Jun 2023 pada 16.42
+-- Versi server: 10.4.14-MariaDB
+-- Versi PHP: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 
 DELIMITER $$
 --
--- Functions
+-- Fungsi
 --
 CREATE DEFINER=`root`@`localhost` FUNCTION `kode_automatis` (`kode` INT) RETURNS CHAR(7) CHARSET latin1 BEGIN
 DECLARE kodebaru CHAR(7);
@@ -50,7 +50,28 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pemasukkan`
+-- Struktur dari tabel `contact_us`
+--
+
+CREATE TABLE `contact_us` (
+  `id` int(11) NOT NULL,
+  `fullname` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `subject` varchar(50) NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `contact_us`
+--
+
+INSERT INTO `contact_us` (`id`, `fullname`, `email`, `subject`, `message`) VALUES
+(1, 'reyhan', 'reyhanfebrizioresman@gmail.com', 'saya mengalami sebuah kendala yang tidak tau harus', 'jadi kendala nya tuh ada suatu bug kecil di dalam program ini jadi saya mohon untuk memperbaiki bug tersebut agar saya tidak kesulitan lagi');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pemasukkan`
 --
 
 CREATE TABLE `pemasukkan` (
@@ -63,7 +84,7 @@ CREATE TABLE `pemasukkan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pemasukkan`
+-- Dumping data untuk tabel `pemasukkan`
 --
 
 INSERT INTO `pemasukkan` (`id`, `tanggal`, `keterangan`, `sumber`, `jumlah`, `username`) VALUES
@@ -85,12 +106,14 @@ INSERT INTO `pemasukkan` (`id`, `tanggal`, `keterangan`, `sumber`, `jumlah`, `us
 (48, '2022-08-24', 'Pembuatan Website Pemerintah', 'ATM', '25.000.000', 'andi'),
 (49, '2022-08-30', 'Pembuatan Website Perusahaan', 'ATM', '55.500.000', 'andi'),
 (50, '2022-08-31', 'Pembuatan Aplikasi Pemerintaha', 'Pekerjaan', '25.000.000', 'andi'),
-(51, '2022-08-31', 'Pembuatan Poster Pendidikan', 'ATM', '75.000', 'andi');
+(51, '2022-08-31', 'Pembuatan Poster Pendidikan', 'ATM', '75.000', 'andi'),
+(52, '2023-06-16', 'pengeluaran', 'ATM', '900.000', 'dono'),
+(53, '2023-06-16', 'turu', 'ATM', '100.000', 'dono');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengeluaran`
+-- Struktur dari tabel `pengeluaran`
 --
 
 CREATE TABLE `pengeluaran` (
@@ -103,7 +126,7 @@ CREATE TABLE `pengeluaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pengeluaran`
+-- Dumping data untuk tabel `pengeluaran`
 --
 
 INSERT INTO `pengeluaran` (`id`, `tanggal`, `keterangan`, `keperluan`, `jumlah`, `username`) VALUES
@@ -124,7 +147,7 @@ INSERT INTO `pengeluaran` (`id`, `tanggal`, `keterangan`, `keperluan`, `jumlah`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rekening_keluar`
+-- Struktur dari tabel `rekening_keluar`
 --
 
 CREATE TABLE `rekening_keluar` (
@@ -137,14 +160,14 @@ CREATE TABLE `rekening_keluar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rekening_keluar`
+-- Dumping data untuk tabel `rekening_keluar`
 --
 
 INSERT INTO `rekening_keluar` (`id`, `kode`, `jumlah`, `aksi`, `tanggal`, `username`) VALUES
 (16, 'TRF0001', '7.850.000', 'keluar', '2022-08-30', 'andi');
 
 --
--- Triggers `rekening_keluar`
+-- Trigger `rekening_keluar`
 --
 DELIMITER $$
 CREATE TRIGGER `tg_kodekeluar` BEFORE INSERT ON `rekening_keluar` FOR EACH ROW BEGIN
@@ -166,7 +189,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rekening_masuk`
+-- Struktur dari tabel `rekening_masuk`
 --
 
 CREATE TABLE `rekening_masuk` (
@@ -179,7 +202,7 @@ CREATE TABLE `rekening_masuk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rekening_masuk`
+-- Dumping data untuk tabel `rekening_masuk`
 --
 
 INSERT INTO `rekening_masuk` (`id`, `kode`, `jumlah`, `aksi`, `tanggal`, `username`) VALUES
@@ -188,7 +211,7 @@ INSERT INTO `rekening_masuk` (`id`, `kode`, `jumlah`, `aksi`, `tanggal`, `userna
 (19, 'TRX0003', '7.850.000', 'masuk', '2022-08-30', 'admin');
 
 --
--- Triggers `rekening_masuk`
+-- Trigger `rekening_masuk`
 --
 DELIMITER $$
 CREATE TRIGGER `tg_kodemasuk` BEFORE INSERT ON `rekening_masuk` FOR EACH ROW BEGIN
@@ -210,7 +233,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -224,47 +247,55 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`id_user`, `email`, `username`, `password`, `status`, `level`, `no_rek`) VALUES
 (2, 'admin@gmail.com', 'admin', '$2y$10$P4k6qW8ppAqWfectI0tT/OOirNUFiHDA2j7.miX5Hv6XQ34/0AlK.', 'aktif', 'user', '000123456789'),
-(17, 'andifirmansyah@gmail.com', 'andi', '$2y$10$mSLQZVX.jbEhVWZ3/ZSMsuLwm4yYBKP7w1SX5zWzr1v1/wM3T1VFq', 'aktif', 'user', '012345678900');
+(17, 'andifirmansyah@gmail.com', 'andi', '$2y$10$mSLQZVX.jbEhVWZ3/ZSMsuLwm4yYBKP7w1SX5zWzr1v1/wM3T1VFq', 'aktif', 'user', '012345678900'),
+(18, 'reyhanfebrizioresman@gmail.com', 'adul', '$2y$10$ep31CMeZiRwcE9Ty/AbE1.4w9IKTuaPgro95b/adKxVdja9LszHcO', 'aktif', 'admin', '5'),
+(19, 'adulea@gmail.com', 'dono', '$2y$10$cGUVJOWJiOYhruQr3v3K2uRO0DGMyNDNBwlQlQMhzc/85.bfRbKlu', 'aktif', 'user', '9');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `pemasukkan`
+-- Indeks untuk tabel `contact_us`
+--
+ALTER TABLE `contact_us`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `pemasukkan`
 --
 ALTER TABLE `pemasukkan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_username_masuk` (`username`);
 
 --
--- Indexes for table `pengeluaran`
+-- Indeks untuk tabel `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_username_keluar` (`username`);
 
 --
--- Indexes for table `rekening_keluar`
+-- Indeks untuk tabel `rekening_keluar`
 --
 ALTER TABLE `rekening_keluar`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_username_rekening_keluar` (`username`);
 
 --
--- Indexes for table `rekening_masuk`
+-- Indeks untuk tabel `rekening_masuk`
 --
 ALTER TABLE `rekening_masuk`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_username_rekening_masuk` (`username`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`),
@@ -272,63 +303,63 @@ ALTER TABLE `users`
   ADD KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `pemasukkan`
+-- AUTO_INCREMENT untuk tabel `pemasukkan`
 --
 ALTER TABLE `pemasukkan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
--- AUTO_INCREMENT for table `pengeluaran`
+-- AUTO_INCREMENT untuk tabel `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT for table `rekening_keluar`
+-- AUTO_INCREMENT untuk tabel `rekening_keluar`
 --
 ALTER TABLE `rekening_keluar`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `rekening_masuk`
+-- AUTO_INCREMENT untuk tabel `rekening_masuk`
 --
 ALTER TABLE `rekening_masuk`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `pemasukkan`
+-- Ketidakleluasaan untuk tabel `pemasukkan`
 --
 ALTER TABLE `pemasukkan`
   ADD CONSTRAINT `fk_username_masuk` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `pengeluaran`
+-- Ketidakleluasaan untuk tabel `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
   ADD CONSTRAINT `fk_username_keluar` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `rekening_keluar`
+-- Ketidakleluasaan untuk tabel `rekening_keluar`
 --
 ALTER TABLE `rekening_keluar`
   ADD CONSTRAINT `fk_username_rekening_keluar` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `rekening_masuk`
+-- Ketidakleluasaan untuk tabel `rekening_masuk`
 --
 ALTER TABLE `rekening_masuk`
   ADD CONSTRAINT `fk_username_rekening_masuk` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;

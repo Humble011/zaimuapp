@@ -49,6 +49,21 @@
         return mysqli_affected_rows($koneksi);
     }
 
+    // tambah data feedback
+    function tambahMasukFeed($dataMasukFeed) {
+        global $koneksi;
+        $fullname = htmlspecialchars($dataMasukFeed["fullname"]);
+        $email = htmlspecialchars($dataMasukFeed["email"]);
+        $subject = htmlspecialchars($dataMasukFeed["subject"]);
+        $message = htmlspecialchars($dataMasukFeed["message"]);
+
+        // query insert data
+        $query = "INSERT INTO pemasukkan (id, fullname, email, subject, message) VALUES (NULL, '$fullname', '$email', '$subject', '$message')";
+        mysqli_query($koneksi, $query);           
+        
+        return mysqli_affected_rows($koneksi);
+    }
+
     // tanggal indonesia
     function tgl_indo($tgl) {
         $tanggal = substr($tgl, 8, 2);
@@ -68,7 +83,6 @@
         $saldoRekening = $dataTransfer['saldoRekening'];
         $jumlah = htmlspecialchars($dataTransfer['jumlah']);
         $jumlahConvert = str_replace('.', '', $jumlah);
-
         if ($jumlahConvert > $saldoRekening) {
             echo "
                 <script>

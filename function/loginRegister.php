@@ -99,7 +99,7 @@ function login($dataLogin)
                     $_SESSION['user'] = $hasil['username'];
                     $_SESSION['level'] = 'admin';
                     $_SESSION['login'] = true;
-                    header('Location: administrator');
+                    header('Location: dashboard_admin');
                 } elseif ($hasil['level'] == 'user') {
                     $_SESSION['user'] = $hasil['username'];
                     $_SESSION['level'] = 'user';

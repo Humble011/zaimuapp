@@ -115,7 +115,7 @@
                     });
                 </script>
                 <!-- dashboard -->
-                <a href="dashboard" style="text-decoration: none;">
+                <a href="dashboard_admin" style="text-decoration: none;">
                     <li class="aktif" style="border-left: 5px solid #306bff;">
                         <div>
                             <span class="fas fa-tachometer-alt"></span>
@@ -142,14 +142,7 @@
                     </li>
                 </a>
 
-                <a href="pengeluaran" class="linkAktif">
-                    <li id="panel2" style="display: none;">
-                        <div style="margin-left: 20px;">
-                            <span><i class="fas fa-hand-holding-usd"></i></span>
-                            <span>Data Pengeluaran</span>
-                        </div>
-                    </li>
-                </a>
+               
                 <!-- data -->
 
                 <!-- Input -->
@@ -161,35 +154,16 @@
                     </div>
                 </li>
 
-                <a href="tambahPemasukkan" class="linkAktif">
+                <a href="feedback" class="linkAktif">
                     <li id="panel3" style="display: none;">
                         <div style="margin-left: 20px;">
                             <span><i class="fas fa-file-invoice-dollar"></i></span>
-                            <span>Pemasukkan</span>
+                            <span>Data Feedback</span>
                         </div>
                     </li>
                 </a>
 
-                <a href="tambahPengeluaran" class="linkAktif">
-                    <li id="panel4" style="display: none;">
-                        <div style="margin-left: 20px;">
-                            <span><i class="fas fa-hand-holding-usd"></i></span>
-                            <span>Pengeluaran</span>
-                        </div>
-                    </li>
-                </a>
-                <!-- Input -->
-
-                <!-- laporan -->
-                <a href="laporan" style="text-decoration: none;">
-                    <li>
-                        <div>
-                            <span><i class="fas fa-clipboard-list"></i></span>
-                            <span>Laporan</span>
-                        </div>
-                    </li>
-                </a>
-
+                
                 <!-- change icon -->
                 <script>
                     $(".klik").click(function () {
@@ -286,32 +260,27 @@
                                             </div>
                                         </div>
                                         <div class="col-7 d-flex align-items-center tulisan">
-                                            <div class="numbers">
-                                                <p class="card-category ket head">Masukan</p>
-
-                                                <h4 class="card-title ket total"><?= mysqli_num_rows($jumlahUserTidakAktif) ?> User</h4>
-                                            </div>
+                                        <div class="numbers">
+                                            <p class="card-category ket head">Feedback</p>
+                                            <?php
+                                            $query = "SELECT COUNT(*) AS total_feedback FROM contact_us";
+                                            $result = mysqli_query($koneksi, $query);
+                                            $row = mysqli_fetch_assoc($result);
+                                            $totalFeedback = $row['total_feedback'];
+                                            ?>
+                                            <h4 class="card-title ket total"><?= $totalFeedback ?> Feedback</h4>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="overlay" style="background: #d95350;">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <div class="icon-big text-center">
-                                                <i class="fas fa-eye ikon2"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-7 d-flex align-items-center">
-                                            <p class="tulisan">Lihat User</p>
-                                        </div>
+                         
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
-                </div>
+                </div> 
     <!-- Modal dana masuk -->
     <div class="modal fade" id="myModal3" data-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
@@ -329,17 +298,18 @@
                             <div class="table-responsive">
                                 <table class="table table-sm table-hover table-striped table-bordered">
                                     <tr>
-                                        <th>ID User</th>
+                                        <th>No</th>
                                         <th>Username</th>
                                         <th>Email</th>
                                         <th>No Rekening</th>
                                         <th>Level</th>
                                         <th>Status</th>
                                     </tr>
+                                    <?php $i = 1; ?>
                                     <?php foreach($dataUser as $row) : ?>
                                         <?php if ($row['username'] != 'admin') : ?>
                                             <tr id="<?= $row['id_user'] ?>" style="cursor: pointer">
-                                                <td data-target="id_user" class="data" data-id="<?= $row['id_user'] ?>"><?= $row['id_user'] ?></td>
+                                                <td ><?= $i++ ?></td>
                                                 <td data-target="username" class="data" data-id="<?= $row['id_user'] ?>"><?= $row['username'] ?></td>
                                                 <td data-target="email" class="data" data-id="<?= $row['id_user'] ?>"><?= $row['email'] ?></td>
                                                 <td data-target="no_rek"><?= $row['no_rek'] ?></td>
@@ -401,86 +371,9 @@
                 
     
     
-    <!-- Modal history -->
-    <div class="modal fade" id="myModal4" data-backdrop="static">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Riwayat transaksi</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <!-- isi form -->
-                <script type="text/javascript" src="js/pisahTitik.js"></script>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table table-sm table-striped table-bordered">
-                        <tr>
-                            <th>No.</th>
-                            <th>Kode transaksi</th>
-                            <th>Nominal</th>
-                            <th>Aksi</th>
-                            <th>Tanggal</th>
-                        </tr>
-                        <?php foreach($rekeningMasuk as $row) : ?>
-                            <tr>
-                                <td><?= $no ?></td>
-                                <td><?= $row['kode'] ?></td>
-                                <td><?= $row['jumlah'] ?></td>
-                                <td><?= $row['aksi'] ?></td>
-                                <td><?= $row['tanggal'] ?></td>
-                            </tr>
-                            <?php $no++ ?>
-                        <?php endforeach; ?>
+   
 
-                        <?php foreach($rekeningKeluar as $row) : ?>
-                            <tr>
-                                <td><?= $no ?></td>
-                                <td><?= $row['kode'] ?></td>
-                                <td><?= $row['jumlah'] ?></td>
-                                <td><?= $row['aksi'] ?></td>
-                                <td><?= $row['tanggal'] ?></td>
-                            </tr>
-                            <?php $no++ ?>
-                        <?php endforeach; ?>
-                        </table>
-                    </div>
-                </div>
-                <!-- footer form -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">Tutup</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal history -->
-
-    <!-- Modal transfer -->
-    <div class="modal fade" id="myModal5" data-backdrop="static">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Transfer</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <!-- isi form -->
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="jumlahRekOut">No rekening</label>
-                        <input type="text" class="form-control" id="no_rek" required>
-                    </div>
-                </div>
-                <!-- footer form -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <a href="#" class="btn btn-primary tambah_norek">Cari</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <!-- Modal transfer -->
 
     <!-- banyak modal -->
