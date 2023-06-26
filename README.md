@@ -1,5 +1,5 @@
 
-##Kelompok 5
+## Kelompok 5
   Nama Software: Aplikasi Manajemen Keuangan
   Alias: Zaimu App
   Kode: Z001
@@ -16,11 +16,11 @@ Aplikasi pencatatan keuangan harian ini memiliki tampilan yang sederhana dan fit
 To access. Example http://localhost/zaimuapp-main/index.php
 
 ## Tampilan Aplikasi
-![ss](img/ss1.png)
-![ss](img/ss2.png)
-![ss](img/ss3.png)
-![ss](img/ss4.png)
-![ss](img/ss5.png)
+![ss](img/ss1.jpg)
+![ss](img/ss2.jpg)
+![ss](img/ss3.jpg)
+![ss](img/ss4.jpg)
+![ss](img/ss5.jpg)
 
 ## Admin & User Account
 |  Username | Password     |
