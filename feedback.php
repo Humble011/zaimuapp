@@ -75,7 +75,7 @@ $dataFeedback = query("SELECT * FROM contact_us");
 
 <body>
     <div class="header">
-        <img src="img/zaimu.png" width="25px" height="25px" class="float-left logo-fav">
+        <img src="img/zaimu.jpg" width="25px" height="25px" class="float-left logo-fav">
         <h3 class="text-secondary font-weight-bold float-left logo">Zaimu</h3>
         <h3 class="text-secondary float-left logo2">App</h3>
         <a href="logout">
@@ -90,7 +90,7 @@ $dataFeedback = query("SELECT * FROM contact_us");
         <nav>
             <ul>
                 <li>
-                    <img src="img/avatar.svg" class="img-fluid profile float-left" width="60px">
+                    <img src="img/avatar.jpg" class="img-fluid profile float-left" width="60px">
                     <h5 class="admin"><?= substr($ambilNama, 0, 7) ?></h5>
                     <div class="online online2">
                         <p class="float-right ontext">Online</p>
