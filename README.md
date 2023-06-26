@@ -1,8 +1,11 @@
 
 ## Kelompok 5
   Nama Software: Aplikasi Manajemen Keuangan
+  
   Alias: Zaimu App
+  
   Kode: Z001
+  
   Versi: 1.0
 
   Dikembangkan Oleh: 
