@@ -38,5 +38,7 @@ To access. Example http://localhost/zaimuapp-main/index.php
 - XAMPP /PHP 8.2.0
 - Server : XAMPP
 
+  https://github.com/Humble011/zaimuapp
+
 
 
