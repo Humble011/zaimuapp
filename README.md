@@ -21,6 +21,11 @@ To access. Example http://localhost/zaimuapp-main/index.php
 ![ss](img/ss3.jpg)
 ![ss](img/ss4.jpg)
 ![ss](img/ss5.jpg)
+![ss](img/ss6.jpg)
+![ss](img/ss7.jpg)
+![ss](img/ss8.jpg)
+
+
 
 ## Admin & User Account
 |  Username | Password     |
