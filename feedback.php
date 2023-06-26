@@ -59,7 +59,7 @@ $dataFeedback = query("SELECT * FROM contact_us");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="img/zaimu.png">
-    <title>Zaimu App - Pemasukkan</title>
+    <title>Zaimu App - Feedback</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
@@ -78,10 +78,10 @@ $dataFeedback = query("SELECT * FROM contact_us");
         <img src="img/zaimu.png" width="25px" height="25px" class="float-left logo-fav">
         <h3 class="text-secondary font-weight-bold float-left logo">Zaimu</h3>
         <h3 class="text-secondary float-left logo2">App</h3>
-        <a href="administrator">
+        <a href="logout">
             <div class="logout">
                 <i class="fas fa-sign-out-alt float-right log"></i>
-                <p class="float-right logout"></p>
+                <p class="float-right logout">Logout</p>
             </div>
         </a>
     </div>
@@ -139,8 +139,7 @@ $dataFeedback = query("SELECT * FROM contact_us");
                         </div>
                     </li>
                 </a>
-
-               
+    
                 <!-- data -->
 
                 <!-- Input -->
@@ -210,7 +209,7 @@ $dataFeedback = query("SELECT * FROM contact_us");
                                                 <td> <?= $i++ ?> </td>
                                                 <td data-target="username" class="data" data-id="<?= $row['id'] ?>"><?= $row['fullname'] ?></td>
                                                 <td data-target="email" class="data" data-id="<?= $row['id'] ?>"><?= $row['email'] ?></td>
-                                                <td data-target="no_rek"><?= $row['subject'] ?></td>
+                                                <td data-target="subject"><?= $row['subject'] ?></td>
                                                 <td class="data" data-id="<?= $row['id'] ?>"><?= $row['message'] ?></td>
                                                 <td data-target="user">
                                                 <button class="btn btn-sm btn-danger btn-hapus" data-id="<?= $row['id'] ?>" onclick="showDeleteModal(<?= $row['id'] ?>)">Hapus</button>

@@ -78,10 +78,10 @@ $jumlahUserTidakAktif = mysqli_query($koneksi, "SELECT * FROM users WHERE status
         <img src="img/zaimu.png" width="25px" height="25px" class="float-left logo-fav">
         <h3 class="text-secondary font-weight-bold float-left logo">Zaimu</h3>
         <h3 class="text-secondary float-left logo2">App</h3>
-        <a href="administrator">
+        <a href="logout">
             <div class="logout">
                 <i class="fas fa-sign-out-alt float-right log"></i>
-                <p class="float-right logout"></p>
+                <p class="float-right logout">Logout</p>
             </div>
         </a>
     </div>

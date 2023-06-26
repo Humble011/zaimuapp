@@ -9,6 +9,83 @@
         header("Location: dashboard");
         exit;
     }
+    
+    // if (isset($_POST["submit"])) {
+    //     if (tambahMasukFeed($_POST) > 0) {
+    //         echo "
+    //             <script>
+    //                 alert('data berhasil ditambahkan!');
+    //                 document.location.href = '/';
+    //             </script>
+    //             ";
+    //     } else {
+    //         echo "
+    //             <script>
+    //                 alert('data gagal ditambahkan!');
+    //             </script>
+    //             ";
+    //     }
+    // }
+    if(isset($_POST["submit"])){
+        if (empty($_POST['fullname']) || empty($_POST['email']) || empty($_POST['subject']) || empty($_POST['message'])){
+            echo '{"status" : "Error", "Message" : "fullname, email, subject, and message is required!"}';
+            exit();
+        }
+    
+        // tambah data
+        $fullname = htmlspecialchars($_POST["fullname"]);
+        $email = htmlspecialchars($_POST["email"]);
+        $subject = htmlspecialchars($_POST["subject"]);
+        $message = htmlspecialchars($_POST["message"]);
+    
+        // query insert data
+        $query = "INSERT INTO contact_us VALUES ('', '$fullname', '$email', '$subject', '$message')";
+
+        // if ($_POST > 0){
+        //     echo "
+        //             <script>
+        //                 alert('data berhasil ditambahkan!');
+        //                 document.location.href = '';
+        //             </script>
+        //             ";
+        // }else{
+        //     echo "
+        //             <script>
+        //                 alert('data gagal ditambahkan!');
+        //             </script>
+        //             ";
+        // }
+        if (mysqli_query($koneksi, $query)) {
+            echo "
+                    <script>
+                        alert('data berhasil ditambahkan!');
+                        document.location.href = 'index';
+                    </script>
+                    ";
+        } else {
+                 echo "
+                    <script>
+                        alert('data gagal ditambahkan!');
+                    </script>
+                    ";
+        }
+        
+        // if (mysqli_query($koneksi, $query)) {
+        //     echo "
+        //         <script>
+        //             alert('data berhasil ditambahkan!');
+        //             document.location.href = '/';
+        //         </script>
+        //         ";
+        // } else {
+        //     echo "
+        //         <script>
+        //             alert('data gagal ditambahkan!');
+        //         </script>
+        //         ";
+        // }
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -387,7 +464,7 @@
                                 <h2><i class="fa fa-phone" aria-hidden="true"></i> Phone</h2>
                                 <p>123-456-789</p>
                                 <h2><i class="fa fa-envelope" aria-hidden="true"></i> Email</h2>
-                                <p>muhammadhilmi148@gmail.com</p>
+                                <p>zaimuapp@gmail.com</p>
                                 <h2><i class="fa fa-map-marker" aria-hidden="true"></i> Address</h2>
                                 <p>Jl. Soekarno Hatta No.643</p>
                                 <ul>
@@ -398,13 +475,13 @@
                                 </ul>
                             </div>
                             <div class="contact-in">
-                                <h1>Send a Message</h1>
-                                <form>
-                                    <input type="text" placeholder="Full Name" class="contact-in-input">
-                                    <input type="text" placeholder="Email" class="contact-in-input">
-                                    <input type="text" placeholder="Subject" class="contact-in-input">
-                                    <textarea placeholder="Message" class="contact-in-textarea"></textarea>
-                                    <input type="submit" value="SUBMIT" class="contact-in-btn">
+                                <h1>Send a Feedback</h1>
+                                <form method="post">
+                                    <input type="text" placeholder="Full Name" class="contact-in-input" name="fullname">
+                                    <input type="text" placeholder="Email" class="contact-in-input" name="email">
+                                    <input type="text" placeholder="Subject" class="contact-in-input" name="subject">
+                                    <textarea name="message" placeholder="Message" class="contact-in-textarea"></textarea>
+                                    <input type="submit" name="submit" class="contact-in-btn">
                                 </form>
                             </div>
                             <div class="contact-in">
